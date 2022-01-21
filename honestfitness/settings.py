@@ -41,11 +41,24 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
     'blog',
 ]
+
+# Specifying to Django the site id incase of using multiple sites
+
+SITE_ID = 1
+
+# Adding a redirect for users logging in and out
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
