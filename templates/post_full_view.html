@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="featured-image">
+
     <div class="container">
         <div class="row">
-            <div class="post-featured-image">
-                <!-- The featured image URL goes in the src attribute -->
+            <div class="post-featured-image mt-2">
+                <!-- Featured Image of the post -->
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" width="100%">
                 {% else %}
@@ -12,6 +12,7 @@
                 {% endif %}
             </div>
         </div>
+        <!-- Post Title, author and date created -->
         <div class="post-view-title">
             <h1>
                 {{ post.title }}
@@ -20,15 +21,48 @@
                 {{ post.author }} | {{ post.created_on }}
             </h5>
         </div>
+        <!-- Post Likes -->
         <div class="post-likes">
             <strong><i class="far fa-heart"></i> {{ post.number_of_likes }} </strong>
         </div>
+        <!-- The body of the post -->
         <div class="post-view-content">
             <p>
                 {{ post.content | safe }}
             </p>
         </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <!-- This lists the amount of comments as a total count  -->
+                {% with comments.count as total_comments %}
+                <strong class="text-secondary"><i class="far fa-comments"></i>
+                    <!-- Uses the above with statement to declare total comments from comments.count -->
+                    {{ total_comments }}</strong>
+                {% endwith %}
+        </div>
+        <div class="row">
+            <div class="col-12 card mb-4  mt-3 ">
+                <h3>Comments:</h3>
+                <div class="card-body">
+                    <!-- A for loop to iterate through the comments -->
+                    {% for comment in comments %}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold">
+                            <!-- Name of person who left the comment, the date left and the comment body with text added "said" to declare it is a comment -->
+                            {{ comment.name }}
+                            <span class=" text-muted font-weight-normal">
+                                {{ comment.created_on }}
+                            </span> Said:
+                        </p>
+                        {{ comment.body | linebreaks }}
+                    </div>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+
 
 {% endblock content %}

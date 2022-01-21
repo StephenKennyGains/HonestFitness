@@ -1,0 +1,55 @@
+
+
+/* ---------------- Header and Navbar ------------------- */
+
+.nav-header {
+    margin-bottom: 60px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav {
+    font-size: 1.25rem;
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.navbar-dark .navbar-toggler {
+    border: none;
+}
+
+/* ------------------- Footer Bar ------------------- */
+
+.footer-nav a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: white;
+}
+
+
+/* ----------------- Full Post View Design -------------------- */
+
+.post-featured-image {
+    margin-top: ;
+    height: 50vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 600px) {
+
+    .post-featured-image {
+        height: 33vh;
+        width: 100%;
+    }
+}
