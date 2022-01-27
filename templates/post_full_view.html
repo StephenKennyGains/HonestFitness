@@ -5,7 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="post-featured-image mt-2">
-                <!-- Featured Image of the post -->
+
+                <!---------- Featured Image of the post -------------------->
+
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" width="100%">
                 {% else %}
@@ -13,7 +15,9 @@
                 {% endif %}
             </div>
         </div>
-        <!-- Post Title, author and date created -->
+
+        <!---------------- Post Title, author and date created ---------------------->
+
         <div class="post-view-title">
             <h1>
                 {{ post.title }}
@@ -22,11 +26,30 @@
                 {{ post.author }} | {{ post.created_on }}
             </h5>
         </div>
-        <!-- Post Likes -->
+
+        <!---------------- Post Likes --------------------------->
+
+        {% if user.is_authenticated %}
+        <form action="{% url 'post_like' post.slug %}" method="POST">
+            {% csrf_token %}
+            {% if liked %}
+
+            <button type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="fas fa-heart"></i></button>
+
+            {% else %}
+
+            <button type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="far fa-heart"></i></button>
+
+            {% endif %}
+        </form>
+            {% else %}
         <div class="post-likes">
             <strong><i class="far fa-heart"></i> {{ post.number_of_likes }} </strong>
         </div>
-        <!-- The body of the post -->
+            {% endif %}
+
+        <!------------- The body of the post -------------------->
+
         <div class="post-view-content">
             <p>
                 {{ post.content | safe }}
@@ -68,19 +91,23 @@
         </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="col-12 card mb-4  mt-3 ">
                 <div class="card-body">
-                    <!-- For later -->
+                    <!----------- To allow logged in users to comment  ----------------->
+
                     {% if commented %}
+
                     <div class="alert alert-success" role="alert">
-                        Your comment is awaiting approval
+                        Thanks for commenting, we will review your comment shortly.
                     </div>
+
                     {% else %}
+
                     {% if user.is_authenticated %}
     
                     <h3>Leave a comment:</h3>
                     <p>Posting as: {{ user.username }}</p>
-                    <form method="post" style="margin-top: 1.3em;">
+                    <form method="post">
                         {{ comment_form | crispy }}
                         {% csrf_token %}
                         <button type="submit" class="btn btn-signup btn-lg">Submit</button>
