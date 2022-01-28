@@ -1,3 +1,9 @@
+""" Views allow for models to be displayed to the user and
+are displayed by referencing them through the templates.
+Below are the views to allow users to enter into a full view
+of listed postsand comment on them and like them if registered
+and logged in"""
+
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
@@ -6,15 +12,27 @@ from .forms import CommentForm
 
 
 class PostListGeneral(generic.ListView):
+
+    """ Sets the view for posts to display to the homepage.
+    Pagination comes in at 3 posts to scroll earlier posts"""
+
     model = Post
-    queryset = Post.objects.filter(status=1, category=1).order_by("-created_on")
+    queryset = Post.objects.filter(status=1, category=1).order_by(
+        "-created_on")
     template_name = "index.html"
     paginate_by = 3
 
 
 class PostFullView(View):
 
+    """ Sets the view for posts to be entered into in a new
+    template under post_full_view and view approved comments
+    and likes"""
+
     def get(self, request, slug, *args, **kwargs):
+
+        """ Displays published posts, approved comments and likes """
+
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by('created_on')
@@ -35,6 +53,9 @@ class PostFullView(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
+
+        """ Sets the display and oredering of approved comments
+        and checks for the log in status for display"""
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -68,7 +89,13 @@ class PostFullView(View):
 
 class PostLike(View):
 
+    """ Sets the display of liking/Unliking posts """
+
     def post(self, request, slug):
+
+        """ Sets the parameters for a user to unlike a post
+        if already liked and like if not already liked"""
+
         post = get_object_or_404(Post, slug=slug)
 
         if post.likes.filter(id=request.user.id).exists():
