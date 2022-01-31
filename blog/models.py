@@ -90,6 +90,7 @@ class Review(models.Model):
     review = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(choices=RATING, default=1)
+    status = models.IntegerField(choices=STATUS, default=0)
     approved = models.BooleanField(default=False)
 
 

@@ -7,20 +7,30 @@ and logged in"""
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post
-from .forms import CommentForm
+from .models import Post, Review
+from .forms import CommentForm, ReviewForm
+from django.core.paginator import Paginator
 
 
-class PostListGeneral(generic.ListView):
+class PostGeneral(generic.ListView):
 
     """ Sets the view for posts to display to the homepage.
     Pagination comes in at 3 posts to scroll earlier posts"""
 
-    model = Post
-    queryset = Post.objects.filter(status=1, category=1).order_by(
-        "-created_on")
+    context_object_name = "category"
     template_name = "index.html"
-    paginate_by = 3
+    model = Post
+    def get_queryset(self):
+        myset = {
+            "General": Post.objects.filter(status=1, category=1).order_by(
+                "-created_on"),
+            "Training": Post.objects.filter(status=1, category=2).order_by(
+                "-created_on"),
+            "Exercise": Post.objects.filter(status=1, category=3).order_by(
+                "-created_on")
+        }
+        paginator = Paginator(Post, 3)
+        return myset
 
 
 class PostFullView(View):
@@ -104,3 +114,14 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_full_view', args=[slug]))
+
+
+class Review(generic.ListView):
+
+    """ Sets the view for posts to display to the homepage.
+    Pagination comes in at 3 posts to scroll earlier posts"""
+
+    model = Review
+    queryset = Review.objects.filter(status=1).order_by(
+        "-created_on")
+    template_name = "reviews.html"
