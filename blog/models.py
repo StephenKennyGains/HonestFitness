@@ -18,6 +18,14 @@ CATEGORY = (
     (3, "Exercise Advice")
 )
 
+RATING = (
+    (1, "1"),
+    (2, "2"),
+    (3, "3"),
+    (4, "4"),
+    (5, "5")
+)
+
 
 class Post(models.Model):
     """Post model sets the attributes to be included in each
@@ -42,7 +50,7 @@ class Post(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        """Defined by Django as the magic function"""
+        """Return post name as string"""
         return self.title
 
     def number_of_likes(self):
@@ -68,3 +76,27 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"User {self.name} says {self.body}"
+
+
+class Review(models.Model):
+    """Review moodel allows users to post reviews
+    of places and people in fitness that they feel
+    are worth highlighting"""
+
+    title = models.CharField(max_length=200, unique=False)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="review")
+    location = models.CharField(max_length=100, unique=False)
+    review = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    rating = models.IntegerField(choices=RATING, default=1)
+    approved = models.BooleanField(default=False)
+
+
+    class Meta:
+        """Sets the ordering to be from latest to oldest"""
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        """Return review name as string"""
+        return self.title
