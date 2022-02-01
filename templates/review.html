@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                {% for review in review_list %}
+                   <div class="col-12 col-md-4">
+                    <div class="card text-center">
+                        <div class="card-header">
+                          {{ review.author }}
+                        </div>
+                        <div class="card-body">
+                          <h4 class="card-title">{{ review.title }}</h4>
+                          <h5 class="card-title">{{ review.location }}</h5>
+                          <p class="card-text">{{ review.review }}</p>
+                          <h5 class="card-title">{{ review.rating }} <i class="fas fa-star"></i> </h5>
+                        </div>
+                        <div class="card-footer text-muted">
+                          {{ review.created_on }}
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 card mb-4  mt-3 ">
+            <div class="card-body">
+                <!----------- To allow logged in users to comment  ----------------->
+
+                {% if reviewed %}
+
+                <div class="alert alert-success" role="alert">
+                    Thanks for commenting, we will review your comment shortly.
+                </div>
+
+                {% else %}
+
+                {% if user.is_authenticated %}
+
+                <h3>Leave a review:</h3>
+                <p>Reviewing as: {{ user.username }}</p>
+                <form method="post">
+                    {{ review_form }}
+                    {% csrf_token %}
+                    <label for="title">{{ review.title }}Title:</label><br>
+                    <input type="text" id="title" name="title"><br>
+                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                </form>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path('', views.PostGeneral.as_view(), name='home'),
+    path('review/', views.Review.as_view(), name='review'),
     path('<slug:slug>/', views.PostFullView.as_view(), name='post_full_view'),
     path('like/<slug:slug>', views.PostLike.as_view(), name='post_like'),
 ]

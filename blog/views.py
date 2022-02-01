@@ -9,7 +9,6 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post, Review
 from .forms import CommentForm, ReviewForm
-from django.core.paginator import Paginator
 
 
 class PostGeneral(generic.ListView):
@@ -23,13 +22,12 @@ class PostGeneral(generic.ListView):
     def get_queryset(self):
         myset = {
             "General": Post.objects.filter(status=1, category=1).order_by(
-                "-created_on"),
+                "-created_on")[:3],
             "Training": Post.objects.filter(status=1, category=2).order_by(
-                "-created_on"),
+                "-created_on")[:3],
             "Exercise": Post.objects.filter(status=1, category=3).order_by(
-                "-created_on")
+                "-created_on")[:3]
         }
-        paginator = Paginator(Post, 3)
         return myset
 
 
@@ -124,4 +122,34 @@ class Review(generic.ListView):
     model = Review
     queryset = Review.objects.filter(status=1).order_by(
         "-created_on")
-    template_name = "reviews.html"
+    template_name = "review.html"
+
+    def review(self, request, *args, **kwargs):
+
+        """ Sets the display and oredering of approved comments
+        and checks for the log in status for display"""
+
+        queryset = Review.objects.filter(status=1)
+        post = get_object_or_404(queryset,)
+        reviews = review.reviews.filter(approved=True).order_by("-created_on")
+
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            review_form.instance.name = request.user.username
+            review = comment_form.save(commit=False)
+            review.post = post
+            review.save()
+        else:
+            review_form = ReviewForm()
+
+        return render(
+            request,
+            "review.html",
+            {
+                "review": review,
+                "reviews": reviews,
+                "reviewed": True,
+                "review_form": review_form
+            },
+        )
