@@ -19,6 +19,7 @@ class PostGeneral(generic.ListView):
     context_object_name = "category"
     template_name = "index.html"
     model = Post
+
     def get_queryset(self):
         myset = {
             "General": Post.objects.filter(status=1, category=1).order_by(
@@ -124,20 +125,20 @@ class Review(generic.ListView):
         "-created_on")
     template_name = "review.html"
 
-    def review(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
 
         """ Sets the display and oredering of approved comments
         and checks for the log in status for display"""
 
         queryset = Review.objects.filter(status=1)
-        post = get_object_or_404(queryset,)
+        review = get_object_or_404(queryset,)
         reviews = review.reviews.filter(approved=True).order_by("-created_on")
 
         review_form = ReviewForm(data=request.POST)
 
         if review_form.is_valid():
             review_form.instance.name = request.user.username
-            review = comment_form.save(commit=False)
+            review = review_form.save(commit=False)
             review.post = post
             review.save()
         else:
@@ -147,7 +148,7 @@ class Review(generic.ListView):
             request,
             "review.html",
             {
-                "review": review,
+                "post": post,
                 "reviews": reviews,
                 "reviewed": True,
                 "review_form": review_form
