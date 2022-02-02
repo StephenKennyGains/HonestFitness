@@ -7,8 +7,8 @@ and logged in"""
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post, Review
-from .forms import CommentForm, ReviewForm
+from .models import Post
+from .forms import CommentForm
 
 
 class PostGeneral(generic.ListView):
@@ -113,44 +113,3 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_full_view', args=[slug]))
-
-
-class Review(generic.ListView):
-
-    """ Sets the view for posts to display to the homepage.
-    Pagination comes in at 3 posts to scroll earlier posts"""
-
-    model = Review
-    queryset = Review.objects.filter(status=1).order_by(
-        "-created_on")
-    template_name = "review.html"
-
-    def post(self, request, *args, **kwargs):
-
-        """ Sets the display and oredering of approved comments
-        and checks for the log in status for display"""
-
-        queryset = Review.objects.filter(status=1)
-        review = get_object_or_404(queryset,)
-        reviews = review.reviews.filter(approved=True).order_by("-created_on")
-
-        review_form = ReviewForm(data=request.POST)
-
-        if review_form.is_valid():
-            review_form.instance.name = request.user.username
-            review = review_form.save(commit=False)
-            review.post = post
-            review.save()
-        else:
-            review_form = ReviewForm()
-
-        return render(
-            request,
-            "review.html",
-            {
-                "post": post,
-                "reviews": reviews,
-                "reviewed": True,
-                "review_form": review_form
-            },
-        )
