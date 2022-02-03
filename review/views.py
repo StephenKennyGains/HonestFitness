@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from .models import Review, UserReview
+from .models import Review
 from .forms import ReviewForm
 
 # Create your views here.
@@ -16,27 +16,18 @@ class Review(generic.ListView):
         "-created_on")
     template_name = "review.html"
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
+        """ Validate and create data from forms on review page """
 
-        """ Sets the display and oredering of approved comments
-        and checks for the log in status for display"""
-
-        user_review = get_object_or_404
         review_form = ReviewForm(data=request.POST)
 
         if review_form.is_valid():
-            review_form.instance.name = request.user.username
-            user_review = review_form.save(commit=False)
-            user_review.save()
+            review = review_form.save(commit=False)
+            review.user_name = request.user
+            review.save()
+
         else:
             review_form = ReviewForm()
 
         return render(
-            request,
-            "review.html",
-            {
-                "user_review": user_review,
-                "reviewed": True,
-                "review_form": review_form,
-            },
-        )
+            request, 'review.html')
