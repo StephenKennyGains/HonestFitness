@@ -49,22 +49,22 @@
                 <p>Reviewing as: {{ user.username }}</p>
                 <form method="post">
                     {{ review_form }}
-                    <label for="title">{{ review.title }}Title:</label><br>
+                    <label for="title">{{ review.user_title }}Title:</label><br>
                     <input type="text" id="title" name="title"><br>
-                    <label for="location">{{ review.location }}Location:</label><br>
+                    <label for="location">{{ review.user_location }}Location:</label><br>
                     <input type="text" id="location" name="location"><br>
-                    <label for="review">{{ review.review }}Your Review:</label><br>
+                    <label for="review">{{ review.user_reviewbody }}Your Review:</label><br>
                     <input type="text" id="review" name="review"><br>
                     <input type="radio" id="1" name="rating" value="1">
-                    <label for="rating">{{ review.rating }}1</label><br>
+                    <label for="rating">{{ review.user_rating }}1</label><br>
                     <input type="radio" id="2" name="rating" value="2">
-                    <label for="rating">{{ review.rating }}2</label><br>
+                    <label for="rating">{{ review.user_rating }}2</label><br>
                     <input type="radio" id="3" name="rating" value="3">
-                    <label for="rating">{{ review.rating }}3</label><br>
+                    <label for="rating">{{ review.user_rating }}3</label><br>
                     <input type="radio" id="4" name="rating" value="4">
-                    <label for="rating">{{ review.rating }}4</label><br>
+                    <label for="rating">{{ review.user_rating }}4</label><br>
                     <input type="radio" id="5" name="rating" value="5">
-                    <label for="rating">{{ review.rating }}5</label><br>
+                    <label for="rating">{{ review.user_rating }}5</label><br>
                     {% csrf_token %}
                     <button type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin
-from .models import Review
+from .models import Review, UserReview
 
 # Register your models here.
 
@@ -13,6 +12,20 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ('name', 'review')
     actions = ['approve_reviews']
 
-    def approve_comments(self, request, queryset):
+    def approve_reviews(self, request, queryset):
         """ Allows the comments to show if approved """
+        queryset.update(approved=True)
+
+
+@admin.register(UserReview)
+class UserReviewAdmin(admin.ModelAdmin):
+    """ Sets the display and functionality behind review approval """
+
+    list_display = ('user_reviewbody', 'user_title', 'user_rating', 'created_on', 'approved')
+    list_filter = ('approved', 'created_on')
+    search_fields = ('name', 'user_review')
+    actions = ['approve_user_reviews']
+
+    def approve_user_reviews(self, request, queryset):
+        """ Allows the reviews to show if approved """
         queryset.update(approved=True)
