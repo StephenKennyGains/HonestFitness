@@ -2,29 +2,45 @@
 
 {% block content %}
 
+<div class="container-fluid index-background">
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="home-page-title text-center my-4"> Welcome to Honest Fitness </h1>
+            <p class="home-page-description text-center mx-5 px-5 mb-5"> With 10 years of experience in the fitness industry, this site is to help others navigate the world of fitness. There is information every where right now and which is the right information for you can be tricky. This site is completely free, no bias and open for discussion and contribution. I offer advice based on common questions I have gotten and still get from people who are struggling to find the resutls they are looking for. If you enjoy the content, please comment and share to others to help everyone out. </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center mb-3">
+            <h3 class="category-heading">General Articles</h3>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="row">
                 {% for post in category.General %}
                    <div class="col-12 col-md-4">
                        <div class="card">
-                           <div class="image-container">
+                           <div>
                                 <div class="card-body">
                                     {% if "placeholder" in post.featured_image.url %}
-                                    <img class="card-img-top" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A barbell in a gym">
+                                    <img class="card-img-top post-image" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A barbell in a gym">
                                     {% else %}
-                                    <img class="card-img-top" src=" {{ post.featured_image.url }} ">
+                                    <img class="card-img-top post-image" src=" {{ post.featured_image.url }} ">
                                     {% endif %}
-                                    <div class="image-flash">
-                                        <p class="author-section">Author: {{ post.author }}</p>
+                                    <div>
+                                        <p class="author-title">Author: {{ post.author }}</p>
                                     </div>
                                 </div>
-                                <a href="{% url 'post_full_view' post.slug %}" class="post-link">
-                                    <h2 class="card-title">{{ post.title }}</h2>
+                                <a class="post-title-link" href="{% url 'post_full_view' post.slug %}">
+                                    <h2 class="post-title">{{ post.title }}</h2>
                                 </a>
                                 <hr>
-                                <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-heart"></i>{{ post.number_of_likes }}</p>
+                                <p class="card-text text-muted h6">{{ post.created_on }} <i class="far fa-heart"></i>{{ post.number_of_likes }}</p>
                             </div>
                         </div>   
                     </div>
@@ -32,6 +48,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock %}

@@ -17,7 +17,7 @@
                         <div class="card-body">
                           <h4 class="card-title">{{ review.title }}</h4>
                           <h5 class="card-title">{{ review.location }}</h5>
-                          <p class="card-text">{{ review.review }}</p>
+                          <p class="card-text">{{ review.reviewbody }}</p>
                           <h5 class="card-title">{{ review.rating }} <i class="fas fa-star"></i> </h5>
                         </div>
                         <div class="card-footer text-muted">
@@ -40,7 +40,7 @@
                 {% if reviewed %}
 
                 <div class="alert alert-success" role="alert">
-                    Thanks for commenting, we will review your comment shortly.
+                    Thanks for leaving a review, it has been sent for approval.
                 </div>
 
                 {% else %}
@@ -49,14 +49,14 @@
 
                 <h3>Leave a review:</h3>
                 <p>Reviewing as: {{ user.username }}</p>
-                <form method="post">
-                    {{ review_form }}
+                <form method="POST">
+                    
                     <label for="title">{{ review.title }}Title:</label><br>
                     <input type="text" id="title" name="title"><br>
                     <label for="location">{{ review.location }}Location:</label><br>
                     <input type="text" id="location" name="location"><br>
                     <label for="review">{{ review.reviewbody }}Your Review:</label><br>
-                    <input type="text" id="review" name="review"><br>
+                    <input type="text" id="review" name="reviewbody"><br>
                     <input type="radio" id="1" name="rating" value="1">
                     <label for="rating">{{ review.rating }}1</label><br>
                     <input type="radio" id="2" name="rating" value="2">

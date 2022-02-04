@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
 /* ---------------- Header and Navbar ------------------- */
 
@@ -35,8 +35,50 @@
 /* ----------------- Full Post View Design -------------------- */
 
 .post-featured-image {
-    margin-top: ;
     height: 50vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+/* ----------------- Home Page Design -------------------- */
+
+.index-background {
+    background-color: #A9C9FF;
+    background-image: linear-gradient(145deg, #A9C9FF 0%, #FFBBEC 100%);    
+}
+
+.home-page-title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.home-page-description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+.category-heading {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.post-title {
+    color: black;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+.post-title-link {
+    text-decoration: none;
+}
+
+.post-image {
+    height: 33vh;
     width: 100%;
     overflow: hidden;
     position: relative;
