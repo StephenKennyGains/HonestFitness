@@ -7,11 +7,13 @@
 }
 
 .navbar-brand {
+    font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size: 1.5rem;
 }
 
 .navbar-nav {
+    font-family: 'Lato', sans-serif;
     font-size: 1.25rem;
 }
 
@@ -45,30 +47,38 @@
 /* ----------------- Home Page Design -------------------- */
 
 .index-background {
-    background-color: #A9C9FF;
-    background-image: linear-gradient(145deg, #A9C9FF 0%, #FFBBEC 100%);    
+    background-color: #FFDEE9;
+    background-image: linear-gradient(315deg, #FFDEE9 18%, #B5FFFC 100%);      
 }
 
 .home-page-title {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     font-size: 3rem;
+    color: rgb(72, 73, 73);
 }
 
 .home-page-description {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1.25rem;
+    color: rgb(72, 73, 73);
 }
 
 .category-heading {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     font-size: 2.5rem;
+    color: slategray;
+}
+
+.home-cards {
+    background-color: black;
+    border-radius: 25px;
 }
 
 .post-title {
-    color: black;
+    color: white;
     padding-left: 20px;
     text-decoration: none;
 }
@@ -77,12 +87,22 @@
     text-decoration: none;
 }
 
+.post-author {
+    color: white;
+}
+
+.post-meta {
+    color: white;
+    padding: 25px 20px;
+}
+
 .post-image {
     height: 33vh;
     width: 100%;
     overflow: hidden;
     position: relative;
     display: inline-block;
+    border-radius: 15px;
 }
 
 
