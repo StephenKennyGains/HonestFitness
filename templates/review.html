@@ -9,21 +9,23 @@
         <div class="col-12">
             <div class="row">
                 {% for review in review_list %}
-                   <div class="col-12 col-md-4">
-                    <div class="card text-center">
-                        <div class="card-header">
-                          {{ review.author }}
+                   <div class="col-12 col-md-4 my-3">
+                        <div class="card review-card text-center">
+                            <div>
+                                <div class="">
+                                Written by: {{ review.author }}
+                                </div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{ review.title }}</h4>
+                                <h5 class="card-title">Location: {{ review.location }}</h5>
+                                <p class="card-text">{{ review.reviewbody }}</p>
+                                <h5 class="card-title">{{ review.rating }} <i class="fas fa-star"></i></h5>
+                            </div>
+                            <div class="text-muted">
+                            {{ review.created_on }}
+                            </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                          <h4 class="card-title">{{ review.title }}</h4>
-                          <h5 class="card-title">{{ review.location }}</h5>
-                          <p class="card-text">{{ review.reviewbody }}</p>
-                          <h5 class="card-title">{{ review.rating }} <i class="fas fa-star"></i> </h5>
-                        </div>
-                        <div class="card-footer text-muted">
-                          {{ review.created_on }}
-                        </div>
-                      </div>
                     </div>
                 {% endfor %}
             </div>
@@ -47,15 +49,15 @@
 
                 {% if user.is_authenticated %}
 
-                <h3>Leave a review:</h3>
-                <p>Reviewing as: {{ user.username }}</p>
+                <h3 class="form-headings">Leave a review:</h3>
+                <p class="form-headings">Reviewing as: {{ user.username }}</p>
                 <form method="POST">
                     
-                    <label for="title">{{ review.title }}Title:</label><br>
+                    <label for="title" class="form-headings d-inline">{{ review.title }}Title:</label><br>
                     <input type="text" id="title" name="title"><br>
-                    <label for="location">{{ review.location }}Location:</label><br>
+                    <label for="location" class="form-headings d-inline">{{ review.location }}Location:</label><br>
                     <input type="text" id="location" name="location"><br>
-                    <label for="review">{{ review.reviewbody }}Your Review:</label><br>
+                    <label for="review" class="form-headings">{{ review.reviewbody }}Your Review:</label><br>
                     <input type="text" id="review" name="reviewbody"><br>
                     <input type="radio" id="1" name="rating" value="1">
                     <label for="rating">{{ review.rating }}1</label><br>
@@ -68,7 +70,7 @@
                     <input type="radio" id="5" name="rating" value="5">
                     <label for="rating">{{ review.rating }}5</label><br>
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg form-headings">Submit</button>
                 </form>
                 {% endif %}
                 {% endif %}
