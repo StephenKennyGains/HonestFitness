@@ -59,41 +59,29 @@ The site aim for Honest Fitness is for a simplistic fitness blog for users to le
 
 The flowchart for this program was made on LucidChart. The flowchart takes you through both the development strategy for the program and the user experience and where their options are to continue or exit the program and to be given additional instructions on the game along with difficulty choices.
 
-![Flowchart](images/Flowchart_bombsquad.png)
+![Flowchart](media/readme_images/Honest_Fitness_Flowchart.png)
 
 ## App Features
 
-This game does not revolve around skill and instead revolves around luck. To create a better user experience, I wanted to ensure I gave adequate options for both explaining the game or proceeding and to have the option of a short or long game. The reason for this is that since the game revolves around luck over skill, by creating a 4 choice and an 8 choice playing board, the probability of success dramatically changes form, each board. 
+The application has been kept simple to allow for easy navigation for users through both the content and site structure. While having the ability to interact with the site, some level of moderation is still required and so there are some limitations to the users interactivity to the site as outlined below. 
 
 ### Existing Features
 
-- __User Prompt and Welcome__
+- __Blog Post Views__
 
-  - The first stage to the program is basic with a simple message to welcome to the game with the title clearly displayed along with a prompt asking for the users name in an input field which is then relayed back to them in the following line. This is to show the user how the input function will work throughout the remainder of the game and to give them feedback to show them that their input is being received by the program.
+  - The main aspect of the site is the blog post content and to keep the content streamlined to the user it has been categorized into three different categories. The categories are General, Training and Exercise. This allows users to self filter to sections of the site which are more appealing to the them as not all users will be interested in each category of post.
 
-![Welcome and User Prompt](images/terminal_initial_prompt.png)
+- __Categorized Post Pages__
 
-- __Instructions__
+  - As the home page is limited to the 3 most recent posts for each category to limit the content of the home page and avoid having a visual overload to the user, there is a button placed below each category for users to then view a seperate page containing all posts from a particular category ordered from latest to oldest so recurring users can easily view the most recent and up to date posts.
 
-  - The second feature is to give the option for instructions for the user or to proceed straight to board selection. Although new users may want some guidance on how to play, I wanted to leave the option available to a recurring player to bypass this stage and go straight to board selection.
+- __Full View Posts__
 
-![Instructions](images/terminal_instructions.png)
+  - To allow users to view the blog post in a full, unobstructed manner, each blog post will redirect users to a new template which will show only the post and the site header and footer. This view is also where users habve the option to like posts and comment on them to interact with the posts. Comments related to each post will be displayed in this view. The comments will be ordered from oldest to newest to that users can view the comments in order as a conversation. The option to comment will be in a sepearate form to complete and will be dependant on admin approval to publish.
 
-- __Board Selection and Display__
+- __Reviews Page__
 
-  - The first prompt for the user to initiate the game is to choose the length of their game, choosing between a short path and a long path.
-  - A different message will show to the user depending on their choice of board length to give a sense of the level of difficulty ahead.
-  - When selected the board will then display in a format that gives the player a more visual representation of the aim of the game showing 4 columns and either 4 or 8 rows depending on the user choice.
-  - There is a start and an end displayed and the rows are lettered, and columns numbered which are then relayed back to the user as they progress through the game. 
-
-![Board Selection and Display](images/terminal_select_board.png)
-
-- __Board Run Through__
-
- - After the board has been selected the user now has inputs to be made to choose whether their next step will be 1, 2, 3 or 4 with the aim to choose a position with no hidden bomb. The initial message will also give them the probability percentage of them guessing correctly through the whole level.
- - If the player selects a position with a randomly allocated bomb, the display will show them BOOM and that they have died and give the option to try again or exit the program.
- - If a player makes it through a stage, they will be given a new probability of making it to the end successfully and tell them they are safe.
- - Upon reaching the end the player is congratulated and given the choice to either play again or to exit the program.
+  - The Reviews page will feature both Admin created reviews and user created views which will display as cards and give the review title, location, review and a rating between 1-5 stars. The option for users to review themselves will be dependant on their logged in status. For ease of access, I have pinned the form in to a button which is at the top of the page so that in the event of numerous reviews being left, the user will not have to scroll too far to see the ability to review something themselves. To keep the page clean, the form will expand and push other content down instead of resting over existing content or lenghtening the page excesively.  
 
  ![Board Run Through](images/terminal_playthrough.png)
 
