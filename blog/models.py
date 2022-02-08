@@ -1,7 +1,7 @@
 """The models set the foundation of data that can then
 be viewed and edited by admin and users. Below are the
 models for blog posts and user comments allowing for
-CRUD functionality"""
+CRUD functionality. These models are called on in the view"""
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -31,7 +31,7 @@ class Post(models.Model):
     """Post model sets the attributes to be included in each
     post and their limitations like title length. Cascade
     is used to ensure asscociated data with a post is also
-    deleted"""
+    deleted when deleted"""
 
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)

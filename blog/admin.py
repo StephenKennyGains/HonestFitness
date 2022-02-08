@@ -29,4 +29,3 @@ class CommentAdmin(admin.ModelAdmin):
     def approve_comments(self, request, queryset):
         """ Allows the comments to show if approved """
         queryset.update(approved=True)
-

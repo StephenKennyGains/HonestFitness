@@ -4,7 +4,7 @@ Below are the views to allow users to enter into a full view
 of listed postsand comment on them and like them if registered
 and logged in"""
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import generic
 from .models import Review
 from .forms import ReviewForm

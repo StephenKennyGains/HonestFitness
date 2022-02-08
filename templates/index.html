@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<div class="container-fluid index-background">
+<!------------ Page Header and information paragraph -------------->
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -10,9 +11,10 @@
             <p class="home-page-description text-center mx-5 px-5 mb-5"> With 10 years of experience in the fitness industry, this site is to help others navigate the world of fitness. There is information every where right now and which is the right information for you can be tricky. This site is completely free, no bias and open for discussion and contribution. I offer advice based on common questions I have gotten and still get from people who are struggling to find the resutls they are looking for. If you enjoy the content, please comment and share to others to help everyone out. </p>
         </div>
     </div>
-</div>
 
-<div class="container-fluid">
+
+<!------------ Container for posts from General Category -------------->
+
     <div class="row">
         <div class="col-12 text-center mb-3">
             <h3 class="category-heading">General Articles</h3>
@@ -22,9 +24,9 @@
         <div class="col-12">
             <div class="row">
                 {% for post in category.General %}
-                   <div class="col-12 col-md-4">
-                       <div class="card home-cards mb-3">
-                           <div>
+                <div class="col-12 col-md-4">
+                    <div class="card home-cards mb-3">
+                        <div>
                                 <div class="card-body">
                                     {% if "placeholder" in post.featured_image.url %}
                                     <img class="card-img-top post-image" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A barbell in a gym">
@@ -52,9 +54,9 @@
             <button type="button" class="btn btn-lg btn-primary">View All Posts</button>
         </div>
     </div>
-</div>
 
-<div class="container-fluid">
+<!------------ Container for posts from Training Category -------------->
+
     <div class="row">
         <div class="col-12 text-center mb-3">
             <h3 class="category-heading">Training Articles</h3>
@@ -94,9 +96,10 @@
             <button type="button" class="btn btn-lg btn-primary">View All Posts</button>
         </div>
     </div>
-</div>
 
-<div class="container-fluid">
+
+<!------------ Container for posts from Exercise Category -------------->
+
     <div class="row">
         <div class="col-12 text-center mb-3">
             <h3 class="category-heading">Exercise Articles</h3>
@@ -136,9 +139,6 @@
             <button type="button" class="btn btn-lg btn-primary">View All Posts</button>
         </div>
     </div>
-</div>
-
-
 </div>
 
 {% endblock %}

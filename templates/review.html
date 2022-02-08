@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% load crispy_forms_tags %}
-
 {% block content %}
+
+<!------------ Container for thhe drop out button containing the review from -------------->
 
 <div class="container-fluid">
     <div class="row">
@@ -11,12 +11,15 @@
       Click here to leave a review
     </a>
 </p>
+
+<!------------ Review Form -------------->
+
   <div class="collapse" id="collapseExample">
     <div class="container">
         <div class="row">
             <div class="col-12 card mb-4  mt-3 ">
                 <div class="card-body">
-                    <!----------- To allow logged in users to review  ----------------->
+                    
     
                     {% if reviewed %}
     
@@ -27,6 +30,8 @@
                     {% else %}
     
                     {% if user.is_authenticated %}
+
+<!----------- To allow logged in users to review  ----------------->
     
                     <h3 class="form-headings-font">Leave a review:</h3>
                     <p class="form-headings-font">Reviewing as: {{ user.username }}</p>
@@ -75,6 +80,8 @@
   </div>
     </div>
 </div>
+
+<!----------- To display all reviews  ----------------->
 
 <div class="container-fluid">
     <div class="row">

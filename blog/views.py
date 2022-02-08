@@ -1,7 +1,7 @@
 """ Views allow for models to be displayed to the user and
 are displayed by referencing them through the templates.
 Below are the views to allow users to enter into a full view
-of listed postsand comment on them and like them if registered
+of listed posts and comment on them and like them if registered
 and logged in"""
 
 from django.shortcuts import render, get_object_or_404, reverse
@@ -14,7 +14,7 @@ from .forms import CommentForm
 class PostGeneral(generic.ListView):
 
     """ Sets the view for posts to display to the homepage.
-    Pagination comes in at 3 posts to scroll earlier posts"""
+    Posts limited to 3 most recent for each category """
 
     context_object_name = "category"
     template_name = "index.html"
@@ -36,11 +36,14 @@ class PostFullView(View):
 
     """ Sets the view for posts to be entered into in a new
     template under post_full_view and view approved comments
-    and likes"""
+    and likes """
 
     def get(self, request, slug, *args, **kwargs):
 
-        """ Displays published posts, approved comments and likes """
+        """ Displays the current post and approved comments.
+        Sets the value for the like button to false and queries
+        if the user has liked the post so that it can then be
+        set to true for display"""
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -63,8 +66,10 @@ class PostFullView(View):
 
     def post(self, request, slug, *args, **kwargs):
 
-        """ Sets the display and oredering of approved comments
-        and checks for the log in status for display"""
+        """ Sets the display and functionality to a user
+        submitted comment calling on the comment form,
+        checking its validity and saving to the database
+        for apporval to then be displayed"""
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -98,12 +103,15 @@ class PostFullView(View):
 
 class PostLike(View):
 
-    """ Sets the display of liking/Unliking posts """
+    """Sets the display and functionality of liking/Unliking posts"""
 
     def post(self, request, slug):
 
-        """ Sets the parameters for a user to unlike a post
-        if already liked and like if not already liked"""
+        """ Sets the parameters for a user to unlike a post.
+        Checks if the user has already liked the post and if
+        so, selecting like will unlike the post and vice versa.
+        Upon liking or unliking the post will refresh and
+        display the users current like status """
 
         post = get_object_or_404(Post, slug=slug)
 
