@@ -87,9 +87,9 @@ The application has been kept simple to allow for easy navigation for users thro
 
 ### Features Left to Implement
 
-- There are some features I have thought about including and have been relying on feedback from users as to whether they would improve the experience.
-- The first would be to update the board display with each step for the user. To do this I would put the small and large board into a lit and then display the list to the user after each step to show them how many steps are left. This wass left out originally to avoid over-crowding the terminal but feel this could be avoided by clearing the terminal after each guess.
-- The second feature to implement would be relaying back to the user their position of death or executing a bomb on their previous turns. Although I did put this in as a feature in my initial development, I removed it after as I felt that on the long board play it could be deterring to a user to see multiple failed attempts given how unlikely it is for a user to succeed through the long board. To get around this I would only display the most recent playthrough and offer one free skip of a row as an incentive to play again
+- I would like to include a feature for users to ask for feedback anonymously by way of a form which requests the users current problem, training summary, nutritional summary and other relevant details which would then be used to post as a new blog post under another category of real life stories.
+- I would like to add media storage for uploading short videos on common exercise mistakes and how to correct them. This would be accompanied by a short write up and would be related to the exercise section of the blog.
+- A feature for users to be able to like others comments would be a nice additonal feature and for top liked comments to be highlighted and pinned to a seperate section above each post comments section as this can be a way of spreading more useful information to users seeking the same advice.
 
 ## Testing 
 
@@ -102,7 +102,13 @@ The application has been kept simple to allow for easy navigation for users thro
 - This is for user testing
 
 
-### Validator Testing 
+### Validator Testing
+
+- HTML Testing
+  = HTML HERE
+
+- CSS Testing
+  - CSS HERE
 
 - Python
     - No errors were returned when passing through the official [PEP8](http://pep8online.com/) website. There were originally some syntax errors which were corrected and are no longer present. 
@@ -115,18 +121,21 @@ The application has been kept simple to allow for easy navigation for users thro
 ## Deployment 
 
 ### Heroku Deployment
+- Ensure all dependancies such as third party libraries are listed in your requirements.txt file using the command pip3 freeze --local > requirements.txt
 - Ensure all code is correct and ready for deployment.
 - Log into Heroku.
 - Click "New" and select "create new app" from the drop-down menu. This is found in the upper right portion of the window.
 - Provide a name for your application, this needs to be unique, and select your region.
 - Click "Create App".
-- Navigate to "Settings" and scroll down to "build packs".
-- Click "build packs" and then click both "python" and "node.js"(node.js is needed for the mock terminal.)
-- Ensure that the python buildpack is above the node.js buildpack, You can click and drag the packs to re-arrange them.
+- Navigate to "Resources" tab.
+- Click on Resources and Search for Heroku Postgres and select it on the list to add to the project.
 - Navigate to the "Deploy" section.
 - Scroll down to "Deployment Method" and select "GitHub".
 - Authorize the connection of Heroku to GitHub.
 - Search for your GitHub repository name, and select the correct repository.
+- Navigate to the settings tab
+- Select revel config vars and add the following,
+  - Your Cloudinary URL, your Database URL form the Heroku Postgres and your SECCRET_KEY.
 - For Deployment there are two options, Automatic Deployments or Manual.
 - Automatic Deployment: This will prompt Heroku to re-build your app each time you push your code to GitHub.
 - Manual Deployment: This will only prompt Heroku to build your app when you manually tell it to do so.
@@ -143,13 +152,27 @@ The application has been kept simple to allow for easy navigation for users thro
 
 ## Credits 
 
- - Ardit Sulce- The Python Mega Course. I have not linked the site for this credit as I purchased the course through StackSocial. I believe the original course location was through Udemy which was then sold onto StackSocial as a part of a developer learning bundle which I have found very helpful. 
- - Although the course material from Code Institute does explain all the same methods which I used in my project, I personally struggle to use and grasp concepts if I do not understand exactly how and why a process is working. I found this course by Ardit Sulce very informative and helpful for helping me understand the basic principles for a lot of the code used in basic Python.
+ - I would like to give huge credit to the Code Institute support team. I ran into a few issues that I could not resolve after a few hours of trouble shooting and was given excellent guidance and help to be able to continue with my project.
+ - Thanks to my mentor Adegbenga Adeye for all his help as I changed my project plan a few times due to unforseen circumstances through the months leading up to the project.
 
 ### Content 
 
-- No additional content has been added to this site.
+- No additional content has been added to the project apart from the media listed below.
+- Project Resources are as follows:
+  - Adobe XD for Wireframes
+  - LucidChart for Flowcharts and ERD
+  - Multi Device Website Mockup Generator: Used to generate mockup image.
+  - Font Awesome for Icons
+  - Bootstrap for HTML format
+  - Google Fonts for project fonts
+  - Github and Gitpod for version control and deployment
+  - Django for the project Framework
+  - Summernote, used to format blog posts
+  - Cloudinary for media storage
+  - Crispy forms for the commenting form
 
 ### Media
 
-- No media has been used in the site and media in this file have been created myself.
+- Media for the blog posts was taken from Unsplash.com(https://unsplash.com/)
+- Currently used images are from the following artists
+  - 
