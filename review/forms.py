@@ -13,4 +13,4 @@ class ReviewForm(forms.ModelForm):
         """ Sets the model as Comment and fields to just body"""
 
         model = Review
-        fields = ('reviewbody',)
+        fields = ('title', 'location', 'reviewbody', 'rating')

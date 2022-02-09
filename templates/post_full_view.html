@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="post-featured-image mt-2">
+            <div class="post-view-featured-image mt-2">
 
         <!---------- Featured Image of the post -------------------->
 
@@ -34,11 +34,11 @@
             {% csrf_token %}
             {% if liked %}
 
-            <button type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="fas fa-heart"></i></button>
+            <button class="like-button" type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="fas fa-heart"></i></button>
 
             {% else %}
 
-            <button type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="far fa-heart"></i></button>
+            <button class="like-button" type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="far fa-heart"></i></button>
 
             {% endif %}
         </form>

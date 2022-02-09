@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<!------------ Container for thhe drop out button containing the review from -------------->
+<!------------ Container for the drop out button containing the review from -------------->
+
+<a class="btn btn-warning btn-lg" href="{% url 'create_review' %}"></a>
 
 <div class="container-fluid">
     <div class="row">
@@ -36,6 +38,7 @@
                     <h3 class="form-headings-font">Leave a review:</h3>
                     <p class="form-headings-font">Reviewing as: {{ user.username }}</p>
                     <form method="POST">
+                        {{review_form}}
                         
                         <label for="title" class="form-headings-font">{{ review.title }}Title:</label><br>
                         <input placeholder="This could be a gym, a trainer or organisation you want to highlight" class="form-boxes mb-2" type="text" id="title" name="title"><br>

@@ -5,7 +5,7 @@ of listed postsand comment on them and like them if registered
 and logged in"""
 
 from django.shortcuts import render
-from django.views import generic
+from django.views import generic, View
 from .models import Review
 from .forms import ReviewForm
 
@@ -22,30 +22,10 @@ class UserReview(generic.ListView):
             "-created_on")
     template_name = "review.html"
 
-    def post(self, request):
 
-        """ Validate and create data from forms on review page """
+class CreateReview(View):
 
-        review_form = ReviewForm(data=request.POST)
+    """ Validate and create data from forms on review page """
 
-        if review_form.is_valid():
-            print("FORM IS VALID")
-            review = review_form.save(commit=False)
-            review.author = request.user
-            review.title = request.POST.get('title')
-            review.location = request.POST.get('location')
-            review.rating = int(request.POST.get('rating'))
-            review.save()
-
-        else:
-            print("FORM IS NOT VALID")
-            review_form = ReviewForm()
-
-        return render(
-            request,
-            'review.html',
-            {
-                "reviewed": True,
-                "review_form": review_form,
-            },
-        )
+    model = Review
+    template_name = "create_review.html"
