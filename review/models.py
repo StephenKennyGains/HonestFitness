@@ -45,25 +45,3 @@ class Review(models.Model):
         """Return review name as string"""
         return self.title
 
-
-class UserReview(models.Model):
-    """Review moodel allows users to post reviews
-    of places and people in fitness that they feel
-    are worth highlighting"""
-
-    review = models.ForeignKey(
-        Review, on_delete=models.CASCADE, related_name="user_review")
-    user_title = models.CharField(max_length=200, unique=False)
-    user_location = models.CharField(max_length=100, unique=False)
-    user_reviewbody = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    user_rating = models.IntegerField(choices=RATING, default=1)
-    approved = models.BooleanField(default=False)
-
-    class Meta:
-        """Sets the ordering to be from latest to oldest"""
-        ordering = ["-created_on"]
-
-    def __str__(self):
-        """Return review name as string"""
-        return self.user_title

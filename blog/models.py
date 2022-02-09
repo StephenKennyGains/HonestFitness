@@ -18,14 +18,6 @@ CATEGORY = (
     (3, "Exercise Advice")
 )
 
-RATING = (
-    (1, "1"),
-    (2, "2"),
-    (3, "3"),
-    (4, "4"),
-    (5, "5")
-)
-
 
 class Post(models.Model):
     """Post model sets the attributes to be included in each
