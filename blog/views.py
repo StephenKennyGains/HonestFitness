@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm
 
 
@@ -108,7 +108,7 @@ class PostFullView(View):
         checking its validity and saving to the database
         for apporval to then be displayed"""
 
-        comment = get_object_or_404(self, id=id)
+        comment = get_object_or_404(Comment, id=id)
         r = request.user
         if (
             comment.name == r.username and r.is_authenticated
@@ -117,10 +117,9 @@ class PostFullView(View):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                f'{"Congratulations, your tracks are hidden"}',
+                f'{"Your comment has been deleted"}',
             )
             return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
-            # return HttpResponseRedirect(reverse(''))
         else:
             messages.add_message(
                 request, messages.ERROR, f'{"An error occurred"}')
