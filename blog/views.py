@@ -101,17 +101,14 @@ class PostFullView(View):
             },
         )
 
-    def delete_comment(self, request, id=None):
+    def delete_comment(self, request, id=id):
 
-        """ Sets the display and functionality to a user
-        submitted comment calling on the comment form,
-        checking its validity and saving to the database
-        for apporval to then be displayed"""
+        """ Allows for comments to be deleted """
 
         comment = get_object_or_404(Comment, id=id)
-        r = request.user
+        deletion = request.user
         if (
-            comment.name == r.username and r.is_authenticated
+            comment.name == deletion.username and deletion.is_authenticated
         ):
             comment.delete()
             messages.add_message(
@@ -120,9 +117,6 @@ class PostFullView(View):
                 f'{"Your comment has been deleted"}',
             )
             return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
-        else:
-            messages.add_message(
-                request, messages.ERROR, f'{"An error occurred"}')
 
 
 class PostLike(View):
