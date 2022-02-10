@@ -106,7 +106,7 @@ class PostFullView(View):
         """ Allows for comments to be deleted """
 
         comment = get_object_or_404(Comment, id=id)
-        deletion = request.user
+        deletion = request.user(self, id=id)
         if (
             comment.name == deletion.username and deletion.is_authenticated
         ):
