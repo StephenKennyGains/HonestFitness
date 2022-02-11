@@ -5,7 +5,9 @@ from . import views
 
 
 urlpatterns = [
-        path('review/', views.UserReview.as_view(), name='review'),
-        path('create_review/', views.CreateReview.as_view(), name='create_review'),
-        path('edit_post/<int:id>/', views.EditReview.edit_review, name='edit_review'),
+        path('review/', views.Review.as_view(), name='review'),
+        path('create_review/',
+             views.CreateReview.as_view(), name='create_review'),
+        path('deletereview/<int:id>',
+             views.Review.delete_review, name='delete_review'),
 ]

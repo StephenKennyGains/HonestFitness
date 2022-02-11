@@ -4,7 +4,7 @@ Below are the views to allow users to enter into a full view
 of listed postsand comment on them and like them if registered
 and logged in"""
 
-from django.shortcuts import render, reverse
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.views import generic, View
@@ -15,7 +15,7 @@ from .forms import ReviewForm
 # Create your views here.
 
 
-class UserReview(generic.ListView):
+class Review(generic.ListView):
 
     """ Sets the view for posts to display to the homepage.
     Pagination comes in at 3 posts to scroll earlier posts"""
@@ -23,6 +23,23 @@ class UserReview(generic.ListView):
     model = Review
     queryset = Review.objects.order_by("-created_on")
     template_name = "review.html"
+
+    def delete_review(request, id=None):
+
+        """ Allows for reviews to be deleted """
+
+        review = get_object_or_404(Review, id=id)
+        deletion_request = request.user
+        if (
+            review.author == deletion_request.username and deletion_request.is_authenticated
+        ):
+            review.delete()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f'{"Your review has been deleted"}',
+            )
+            return render(request, "review.html")
 
 
 class CreateReview(View):
@@ -50,7 +67,7 @@ class CreateReview(View):
                 messages.ERROR,
                 f' {"Tou must be logged in to submit a review"}',
             )
-            return HttpResponseRedirect("reviews.html")
+            return render(request, "review.html")
 
     def post(self, request):
 
@@ -67,31 +84,7 @@ class CreateReview(View):
                 post.author = request.user
                 post.user = request.user
                 post.save()
-            return HttpResponseRedirect("review.html")
+            return render(request, "review.html")
         context = {
             "form": form,
         }
-
-class EditReview(View):
-
-    """ Allows for reviews to be edited """
-
-    def edit_review(request, id=None):
-
-        """ Allows for Reviews to be edited"""
-
-        review = Review.objects.get(id=id)
-
-        if request.method != "POST":
-            form = ReviewForm(instance=review)
-        else:
-            form = ReviewForm(instance=review, data=request.POST)
-            if form.is_valid():
-                review = review.save(commit=False)
-                review.author = request.user
-                review.user = request.user
-                form.save()
-                return HttpResponseRedirect(reverse("review.html"))
-
-        context = {"review": review, "form": form}
-        return render(request, "edit_review.html")

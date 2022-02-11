@@ -7,9 +7,35 @@
         <h3 class="form-headings-font">Leave a review:</h3>
         <p class="form-headings-font">Reviewing as: {{ user.username }}</p>
         <form method="POST">
-            {{review_form}}
-            
-            
+            <label for="title" class="form-headings-font">{{ review.title }}Title:</label><br>
+            <input placeholder="This could be a gym, a trainer or organisation you want to highlight" class="form-boxes mb-2" type="text" id="title" name="title"><br>
+            <label for="location" class="form-headings-font">{{ review.location }}Location:</label><br>
+            <input placeholder="Where is the person or facility based?" class="form-boxes mb-2" type="text" id="location" name="location"><br>
+            <label for="review" class="form-headings-font">{{ review.reviewbody }}Your Review:</label><br>
+            <textarea placeholder="Let people know what you think about this person or place..." type="text" name="reviewbody" id="review" cols="80" rows="6"></textarea> <br>
+            <p class="text-center my-3">Please rate this place or person from 1-5 using the options below</p>
+            <div class="d-flex justify-content-evenly">
+            <div class="d-inline-block">
+            <input type="radio" class="radio-buttons" id="1" name="rating" value="1">
+            <label for="rating">{{ review.rating }}1</label><br>
+            </div>
+            <div class="d-inline-block">
+            <input type="radio" class="radio-buttons" id="2" name="rating" value="2">
+            <label for="rating">{{ review.rating }}2</label><br>
+            </div>
+            <div class="d-inline-block">
+            <input type="radio" class="radio-buttons" id="3" name="rating" value="3">
+            <label for="rating">{{ review.rating }}3</label><br>
+            </div>
+            <div class="d-inline-block">
+            <input type="radio" class="radio-buttons" id="4" name="rating" value="4">
+            <label for="rating">{{ review.rating }}4</label><br>
+            </div>
+            <div class="d-inline-block">
+            <input type="radio" class="radio-buttons" id="5" name="rating" value="5">
+            <label for="rating">{{ review.rating }}5</label><br>
+            </div>
+            </div>
             {% csrf_token %}
             <div class="text-center">
             <button type="submit" class="btn btn-primary btn-lg form-headings my-3">Submit</button>
