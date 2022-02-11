@@ -10,11 +10,6 @@ from .models import Review
 class ReviewAdmin(admin.ModelAdmin):
     """ Sets the display and functionality behind review approval """
 
-    list_display = ('reviewbody', 'title', 'created_on', 'approved')
-    list_filter = ('approved', 'created_on')
+    list_display = ('reviewbody', 'title', 'created_on')
+    list_filter = ('created_on',)
     search_fields = ('name', 'review')
-    actions = ['approve_reviews']
-
-    def approve_reviews(self, request, queryset):
-        """ Allows the comments to show if approved """
-        queryset.update(approved=True)

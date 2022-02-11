@@ -8,11 +8,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-STATUS = (
-    (0, "Draft"),
-    (1, "Published")
-)
-
 RATING = (
     (1, "1"),
     (2, "2"),
@@ -34,14 +29,11 @@ class Review(models.Model):
     reviewbody = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(choices=RATING, default=1)
-    status = models.IntegerField(choices=STATUS, default=0)
-    approved = models.BooleanField(default=False)
 
     class Meta:
         """Sets the ordering to be from latest to oldest"""
         ordering = ["-created_on"]
 
-    def __str__(self):
-        """Return review name as string"""
-        return self.title
-
+        def __str__(self):
+            """Return review name as string"""
+            return self.title

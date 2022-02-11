@@ -29,24 +29,7 @@
 
         <!---------------- Post Likes --------------------------->
 
-        {% if user.is_authenticated %}
-        <form action="{% url 'post_like' post.slug %}" method="POST">
-            {% csrf_token %}
-            {% if liked %}
-
-            <button class="like-button" type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="fas fa-heart"></i></button>
-
-            {% else %}
-
-            <button class="like-button" type="submit" name="blogpost_id" value="{{post.slug}}" class=""><i class="far fa-heart"></i></button>
-
-            {% endif %}
-        </form>
-            {% else %}
-        <div class="post-likes">
-            <strong><i class="far fa-heart"></i> {{ post.number_of_likes }} </strong>
-        </div>
-            {% endif %}
+       
 
         <!------------- The body of the post -------------------->
 

@@ -4,7 +4,7 @@ Below are the views to allow users to enter into a full view
 of listed postsand comment on them and like them if registered
 and logged in"""
 
-from django.shortcuts import render, reverse, get_object_or_404
+from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.views import generic, View
@@ -21,8 +21,7 @@ class UserReview(generic.ListView):
     Pagination comes in at 3 posts to scroll earlier posts"""
 
     model = Review
-    queryset = Review.objects.filter(status=1, approved=True).order_by(
-            "-created_on")
+    queryset = Review.objects.order_by("-created_on")
     template_name = "review.html"
 
 
@@ -68,7 +67,31 @@ class CreateReview(View):
                 post.author = request.user
                 post.user = request.user
                 post.save()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("review.html")
         context = {
             "form": form,
         }
+
+class EditReview(View):
+
+    """ Allows for reviews to be edited """
+
+    def edit_review(request, id=None):
+
+        """ Allows for Reviews to be edited"""
+
+        review = Review.objects.get(id=id)
+
+        if request.method != "POST":
+            form = ReviewForm(instance=review)
+        else:
+            form = ReviewForm(instance=review, data=request.POST)
+            if form.is_valid():
+                review = review.save(commit=False)
+                review.author = request.user
+                review.user = request.user
+                form.save()
+                return HttpResponseRedirect(reverse("review.html"))
+
+        context = {"review": review, "form": form}
+        return render(request, "edit_review.html")

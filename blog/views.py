@@ -4,7 +4,7 @@ Below are the views to allow users to enter into a full view
 of listed posts and comment on them and like them if registered
 and logged in"""
 
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -46,12 +46,8 @@ class PostFullView(View):
         if the user has liked the post so that it can then be
         set to true for display"""
 
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by('created_on')
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        post = get_object_or_404(Post, slug=slug)
+        comments = post.comments.order_by('created_on')
 
         return render(
             request,
@@ -60,7 +56,6 @@ class PostFullView(View):
                 "post": post,
                 "comments": comments,
                 "commented": False,
-                "liked": liked,
                 "comment_form": CommentForm()
             },
         )
@@ -74,10 +69,7 @@ class PostFullView(View):
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("-created_on")
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        comments = post.comments.order_by("-created_on")
 
         comment_form = CommentForm(data=request.POST)
 
@@ -86,6 +78,7 @@ class PostFullView(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
+            return HttpResponseRedirect(request.path_info)
         else:
             comment_form = CommentForm()
 
@@ -97,18 +90,17 @@ class PostFullView(View):
                 "comments": comments,
                 "commented": True,
                 "comment_form": comment_form,
-                "liked": liked
             },
         )
 
-    def delete_comment(self, request, id=id):
+    def delete_comment(request, id=None):
 
         """ Allows for comments to be deleted """
 
         comment = get_object_or_404(Comment, id=id)
-        deletion = request.user(self, id=id)
+        deletion_request = request.user
         if (
-            comment.name == deletion.username and deletion.is_authenticated
+            comment.name == deletion_request.username and deletion_request.is_authenticated
         ):
             comment.delete()
             messages.add_message(
@@ -117,25 +109,3 @@ class PostFullView(View):
                 f'{"Your comment has been deleted"}',
             )
             return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
-
-
-class PostLike(View):
-
-    """Sets the display and functionality of liking/Unliking posts"""
-
-    def post(self, request, slug):
-
-        """ Sets the parameters for a user to unlike a post.
-        Checks if the user has already liked the post and if
-        so, selecting like will unlike the post and vice versa.
-        Upon liking or unliking the post will refresh and
-        display the users current like status """
-
-        post = get_object_or_404(Post, slug=slug)
-
-        if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request.user)
-        else:
-            post.likes.add(request.user)
-
-        return HttpResponseRedirect(reverse('post_full_view', args=[slug]))

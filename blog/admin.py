@@ -21,11 +21,6 @@ class PostAdmin(SummernoteModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     """ Sets the display and functionality behind comment approval """
 
-    list_display = ('name', 'body', 'post', 'created_on', 'approved')
-    list_filter = ('approved', 'created_on')
+    list_display = ('name', 'body', 'post', 'created_on')
+    list_filter = ('created_on',)
     search_fields = ('name', 'body')
-    actions = ['approve_comments']
-
-    def approve_comments(self, request, queryset):
-        """ Allows the comments to show if approved """
-        queryset.update(approved=True)

@@ -33,8 +33,6 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(
-        User, related_name='blogpost_likes', blank=True)
     category = models.IntegerField(choices=CATEGORY, default=1)
 
     class Meta:
@@ -60,7 +58,6 @@ class Comment(models.Model):
     name = models.CharField(max_length=50)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
 
     class Meta:
         """Sets the odering from oldest to newest for conversation"""
