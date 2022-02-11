@@ -5,7 +5,6 @@ of listed postsand comment on them and like them if registered
 and logged in"""
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.views import generic, View
 from .models import Review
@@ -23,23 +22,6 @@ class Review(generic.ListView):
     model = Review
     queryset = Review.objects.order_by("-created_on")
     template_name = "review.html"
-
-    def delete_review(request, id=None):
-
-        """ Allows for reviews to be deleted """
-
-        review = get_object_or_404(Review, id=id)
-        deletion_request = request.user
-        if (
-            review.author == deletion_request.username and deletion_request.is_authenticated
-        ):
-            review.delete()
-            messages.add_message(
-                request,
-                messages.SUCCESS,
-                f'{"Your review has been deleted"}',
-            )
-            return render(request, "review.html")
 
 
 class CreateReview(View):

@@ -8,6 +8,4 @@ urlpatterns = [
         path('review/', views.Review.as_view(), name='review'),
         path('create_review/',
              views.CreateReview.as_view(), name='create_review'),
-        path('deletereview/<int:id>',
-             views.Review.delete_review, name='delete_review'),
 ]
