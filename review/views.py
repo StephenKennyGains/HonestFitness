@@ -5,7 +5,6 @@ of listed postsand comment on them and like them if registered
 and logged in"""
 
 from django.shortcuts import render
-from django.contrib import messages
 from django.views import generic, View
 from .models import Review
 from .forms import ReviewForm
@@ -41,9 +40,13 @@ class CreateReview(View):
             return render(
                 request,
                 "create_review.html",
-                {"form": form, "review_form": ReviewForm()},
+                {
+                    "form": form,
+                    "review_form": ReviewForm()
+                },
             )
-            return render(request, "review.html")
+
+        return render(request, "review.html")
 
     def post(self, request):
 
