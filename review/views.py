@@ -4,7 +4,7 @@ Below are the views to allow users to enter into a full view
 of listed postsand comment on them and like them if registered
 and logged in"""
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.contrib import messages
 from django.views import generic, View
 from .models import Review
@@ -14,7 +14,7 @@ from .forms import ReviewForm
 # Create your views here.
 
 
-class Review(generic.ListView):
+class UserReview(generic.ListView):
 
     """ Sets the view for posts to display to the homepage.
     Pagination comes in at 3 posts to scroll earlier posts"""
@@ -43,12 +43,6 @@ class CreateReview(View):
                 "create_review.html",
                 {"form": form, "review_form": ReviewForm()},
             )
-        else:
-            messages.add_message(
-                request,
-                messages.ERROR,
-                f' {"Tou must be logged in to submit a review"}',
-            )
             return render(request, "review.html")
 
     def post(self, request):
@@ -67,6 +61,3 @@ class CreateReview(View):
                 post.user = request.user
                 post.save()
             return render(request, "review.html")
-        context = {
-            "form": form,
-        }
