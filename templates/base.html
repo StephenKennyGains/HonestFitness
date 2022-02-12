@@ -17,7 +17,7 @@
 </head>
 <body>
     
-    <!------------ Header Navigation Bar -------------->
+    <!------------ Header Navigation Bar --------------> 
 
     <header class="nav-header">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark pe-5 ps-5">
@@ -40,6 +40,9 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                   </li>
                   {% else %}
                   <li class="nav-item">

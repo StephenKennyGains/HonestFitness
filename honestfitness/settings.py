@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'blog',
     'review',
+    'manageprofile',
 ]
 
 # Specifying to Django the site id incase of using multiple sites
