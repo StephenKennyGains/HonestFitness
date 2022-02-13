@@ -1,16 +1,14 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.views.generic import View, TemplateView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 from django.http import HttpResponseRedirect
 from review.models import Review
 
 # Create your views here.
+
 
 @login_required
 def profile(request, pk=None):
@@ -33,6 +31,7 @@ def profile(request, pk=None):
         },
     )
 
+
 @login_required
 class DeleteReviewView(DeleteView):
 
@@ -44,6 +43,6 @@ class DeleteReviewView(DeleteView):
         """ Attaches the delete function to the
         specific review related to the user """
 
-        review_delete = Post.objects.get(id=id)
+        review_delete = Review.objects.get(id=id)
         review_delete.delete()
         return HttpResponseRedirect(reverse("profile"))
