@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.views.generic.edit import DeleteView, UpdateView
 from django.http import HttpResponseRedirect
 from review.models import Review
+from review.forms import ReviewForm
 
 # Create your views here.
 

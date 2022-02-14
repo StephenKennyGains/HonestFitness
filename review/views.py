@@ -64,3 +64,23 @@ class CreateReview(View):
                 post.user = request.user
                 post.save()
             return render(request, "review.html")
+
+
+class UpdateReview(View):
+    def edit_review(request, id=None):
+        post = Review.objects.get(id=id)
+        if request.method != "POST":
+            form = ReviewForm(instance=post)
+        else:
+            form = ReviewForm(instance=post, data=request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                title = request.POST["title"]
+                location = request.POST["location"]
+                reviewbody = request.POST["reviewbody"]
+
+                form.save()
+                return render(request, "review.html")
+
+        context = {"post": post, "form": form}
+        return render(request, "edit_review.html", context)
