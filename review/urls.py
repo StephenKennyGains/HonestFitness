@@ -8,5 +8,6 @@ urlpatterns = [
         path('review/', views.UserReview.as_view(), name='review'),
         path('create_review/',
              views.CreateReview.as_view(), name='create_review'),
-        path("edit_review/<int:id>/", views.UpdateReview.edit_review, name="edit_review"),
+        path("edit_review/<int:id>/",
+             views.UpdateReview.edit_review, name="edit_review"),
 ]

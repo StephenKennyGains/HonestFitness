@@ -42,7 +42,7 @@
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link" href="{% url 'profile' %}"><i class="fa-solid fa-circle-user"></i></a>
                   </li>
                   {% else %}
                   <li class="nav-item">
@@ -81,10 +81,10 @@
 
     <!-------------- Footer --------------->
     <footer class="mt-5">
-        <nav class="navbar footer-nav fixed-bottom navbar-expand-lg navbar-dark bg-dark pe-5 ps-5">
-          <div class="container-fluid">
-            <a href=""><i class="fab fa-youtube"></i></a>
-            <a href=""><i class="fab fa-linkedin"></i></a>
+        <nav class="navbar footer-nav fixed-bottom navbar-expand-lg navbar-dark bg-dark pe-5 ps-5 text-center">
+          <div class="container-fluid d-flex justify-content-center">
+            <a class="mx-5" href=""><i class="fa-brands fa-github"></i></a>
+            <a class="mx-5" href=""><i class="fab fa-linkedin"></i></a>
           </div>
         </nav>
       </footer>
