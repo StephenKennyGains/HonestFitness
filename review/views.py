@@ -67,7 +67,15 @@ class CreateReview(View):
 
 
 class UpdateReview(View):
+
+    """ Allows users to edit their reviews by calling the
+    review by its id and actioning the review form to edit"""
+
     def edit_review(request, id=None):
+
+        """ Gets the review by id and calls the form
+        to update and resubmit updating the review by id"""
+
         post = Review.objects.get(id=id)
         if request.method != "POST":
             form = ReviewForm(instance=post)
