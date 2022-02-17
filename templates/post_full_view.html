@@ -3,15 +3,15 @@
 {% load crispy_forms_tags %}
 
     <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <div class="post-view-featured-image mt-2">
 
         <!---------- Featured Image of the post -------------------->
 
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" width="100%">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80">
                 {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
+                <img src=" {{ post.featured_image.url }}">
                 {% endif %}
             </div>
         </div>
@@ -27,10 +27,6 @@
             </h5>
         </div>
 
-        <!---------------- Post Likes --------------------------->
-
-       
-
         <!------------- The body of the post -------------------->
 
         <div class="post-view-content">
@@ -40,42 +36,77 @@
         </div>
     </div>
 
+    <!------------- Comment Section -------------------->
+
     <div class="container">
         <div class="row">
+
+            <!-- Show total comments  -->
+
             <div class="col-1">
-                <!-- This lists the amount of comments as a total count  -->
                 {% with comments.count as total_comments %}
-                <strong class="text-secondary"><i class="far fa-comments"></i>
-                    <!-- Uses the above with statement to declare total comments from comments.count -->
-                    {{ total_comments }}</strong>
+                <strong class="text-secondary"><i class="far fa-comments"></i>{{ total_comments }}</strong>
                 {% endwith %}
             </div>
         </div>
+
+        <!----------- To allow users to comment  ----------------->
+        {% if user.is_authenticated %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12 card comments-card mb-4  mt-3 ">
+                    <div class="card-body">
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as: {{ user.username }}</p>
+                        <form method="post">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-signup btn-lg mt-4">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+
+        <!----------- Prompt account registration or login  ----------------->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="login-prompt">To join the conversation, click <strong><a href="{% url 'account_signup' %}">here</a></strong> to Sign In <br><br>
+                    Don't have an account yet? Create one <strong><a href="{% url 'account_login' %}">here</a></strong> quickly and easily.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!----------- Display comments  ----------------->
         <div class="row">
             <div class="col-12 card comments-card mb-4  mt-3 ">
                 <h3>Comments:</h3>
-                {% if user.is_authenticated %}
                 <div class="card-body">
                     <!-- A for loop to iterate through the comments -->
                     {% for comment in comments %}
                     <div class="comments" style="padding: 10px;">
                         <p class="font-weight-bold">
-                            <!-- Name of person who left the comment, the date left and the comment body with text added "said" to declare it is a comment -->
-                            {{ comment.name }}
-                            <span class=" text-muted font-weight-normal">
-                                {{ comment.created_on }}
-                            </span> Said:
+                            {{ comment.created_on }} <br>
+                            <strong>{{ comment.name }}</strong>
+                            <span class=" text-muted font-weight-normal"></span> Said:
                         </p>
                         <p>{{ comment.body | linebreaks }}</p>
-                                          <!-- If owner of comment, allow to delete comment -->
+
+        <!------------ If owner of comment, allow to delete comment -------------------->
+
                         {% if user.username == comment.name %}
 
-                        <!-- Button trigger modal -->
+                        <!-- Button to prompt Modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
+                        <hr>
   
-                        <!-- Modal -->
+                        <!-- Delete Request Modal -->
+
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
@@ -93,31 +124,16 @@
                             </div>
                             </div>
                         </div>
+
                         {% endif %}
+
                     </div>
+
                     {% endfor %}
-                </div>
-            </div>
-        </div>
-        </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 card mb-4  mt-3 ">
-                <div class="card-body">
-                    <!----------- To allow users to comment  ----------------->
-    
-                    <h3>Leave a comment:</h3>
-                    <p>Posting as: {{ user.username }}</p>
-                    <form method="post">
-                        {{ comment_form | crispy }}
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                    </form>
-                    {% endif %}
+
                 </div>
             </div>
         </div>
     </div>
-
-
+    
 {% endblock content %}

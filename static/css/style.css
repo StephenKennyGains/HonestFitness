@@ -2,11 +2,17 @@
 
 body {
     min-height: 100vh;
-    background-color: #cccac7;
-    background-image: linear-gradient(180deg, #cccac7 0%, #818f8c 100%);
+    background-color: #F0F8FF;
+    background-image: linear-gradient(340deg, #c4c8c7 0%, #F0F8FF 45%);
+    font-family: 'Lato', sans-serif;
+    color: black;
 }
 
 /* ---------------- Header and Navbar ------------------- */
+
+.navbar {
+    background-color: #86C5D8;
+}
 
 .nav-header {
     margin-bottom: 60px;
@@ -39,30 +45,6 @@ body {
     color: white;
 }
 
-
-/* ----------------- Full Post View Design -------------------- */
-
-.post-view-featured-image {
-    height: 50vh;
-    width: fit-content;
-    overflow: hidden;
-    position: relative;
-    --bs-gutter-x: 0rem;
-    display: inline-block;
-    border: 3px solid black;
-    border-radius: 25px;
-}
-
-.like-button {
-    border: none;
-    background-color: transparent;
-    color: red;
-}
-
-.like-button i {
-    font-size: 3rem;
-}
-
 /* ----------------- Home Page Design -------------------- */
 
 .home-page-title {
@@ -87,7 +69,7 @@ body {
 }
 
 .home-cards {
-    background-color: black;
+    background-color: rgb(32, 32, 32);
     border-radius: 25px;
 }
 
@@ -127,26 +109,48 @@ body {
     border-radius: 15px;
 }
 
+/* ----------------- Full Post View Design -------------------- */
+
+.post-view-featured-image {
+    height: 50vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    --bs-gutter-x: 0rem;
+    display: inline-block;
+    border: 3px solid black;
+    border-radius: 25px;
+}
+
+.post-view-featured-image img {
+    height: 100%;
+    width: 100%;
+}
+
+.comments-card {
+    background-color: transparent;
+    border: none;
+}
+
+.login-prompt {
+    font-size: 1.25rem;
+}
+
 
 /* ----------------- Review Page Design -------------------- */
 
 .review-card {
     border-radius: 25px;
     border: 3px solid black;
-    background-color: rgb(190, 190, 190);
-}
-
-.card-header {
-    background-color: #B5FFFC;
-}
-
-.card-footer {
-    background-color: #B5FFFC;
+    background-color: #CAE9F5;
 }
 
 .fa-star {
     color: gold;
 }
+
+
+/* ----------------- Create Review Page Design -------------------- */
 
 .form-headings-font {
     font-family: 'Roboto', sans-serif;
@@ -156,9 +160,9 @@ body {
     width: 100%;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 4px;
-    background-color: #f8f8f8;
+    background-color: #CAE9F5;
 }
 
 textarea {
@@ -168,14 +172,14 @@ textarea {
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
-    background-color: #f8f8f8;
+    background-color: #CAE9F5;
     resize: none;
 }
 
 .radio-buttons {
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    color: #CAE9F5;
     border-radius: 50%;
 }
 
@@ -190,12 +194,21 @@ textarea {
 
 @media only screen and (max-width: 600px) {
 
-    .post-featured-image {
+    .post-view-featured-image {
         height: 33vh;
+        width: 95vw;
+    }
+
+    .post-view-featured-image img {
+        height: 100%;
         width: 100%;
     }
 
     .home-page-description {
         display: none;
+    }
+
+    .login-prompt {
+        font-size: 1rem;
     }
 }
