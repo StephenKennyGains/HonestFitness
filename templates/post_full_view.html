@@ -18,7 +18,7 @@
 
         <!---------------- Post Title, author and date created ---------------------->
 
-        <div class="post-view-title">
+        <div class="post-view-title mt-4 mb-5">
             <h1>
                 {{ post.title }}
             </h1>
@@ -57,7 +57,7 @@
                 <div class="col-12 card comments-card mb-4  mt-3 ">
                     <div class="card-body">
                         <h3>Leave a comment:</h3>
-                        <p>Posting as: {{ user.username }}</p>
+                        <p>Commenting as: {{ user.username }}</p>
                         <form method="post">
                             {{ comment_form | crispy }}
                             {% csrf_token %}
@@ -111,7 +111,7 @@
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete your comment?</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary"><a href="{% url 'delete_comment' comment.id %}"><i class="fa-solid fa-trash-can"></i></a></button>
+                                <button type="button" class="btn btn-danger"><a href="{% url 'delete_comment' comment.id %}"><i class="fa-solid fa-trash-can"></i></a></button>
                                 </div>
                             </div>
                             </div>

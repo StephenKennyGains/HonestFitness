@@ -4,7 +4,8 @@ Below are the views to allow users to enter into a full view
 of listed postsand comment on them and like them if registered
 and logged in"""
 
-from django.shortcuts import render
+from django.shortcuts import render, reverse
+from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Review
 from .forms import ReviewForm
@@ -63,7 +64,7 @@ class CreateReview(View):
                 post.author = request.user
                 post.user = request.user
                 post.save()
-            return render(request, "review.html")
+            return HttpResponseRedirect(reverse("review"))
 
 
 class UpdateReview(View):
@@ -88,7 +89,6 @@ class UpdateReview(View):
                 reviewbody = request.POST["reviewbody"]
 
                 form.save()
-                return render(request, "review.html")
+                return HttpResponseRedirect(reverse("review"))
 
-        context = {"post": post, "form": form}
-        return render(request, "edit_review.html", context)
+        return render(request, "edit_review.html")

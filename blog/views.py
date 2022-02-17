@@ -100,7 +100,8 @@ class PostFullView(View):
         comment = get_object_or_404(Comment, id=id)
         deletion_request = request.user
         if (
-            comment.name == deletion_request.username and deletion_request.is_authenticated
+            comment.name == deletion_request.username and
+            deletion_request.is_authenticated
         ):
             comment.delete()
             messages.add_message(
