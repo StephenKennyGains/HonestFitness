@@ -90,12 +90,21 @@
                         </div>
                     </div>
                     {% endif %}
-                    {% empty %}
                 </div>
 
                     </div>
                 </div>
             </div>
+            {% empty %}
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <hr>
+                        <h3>You can use this page to edit reviews you've made and have them all in one place but ...... <br><br>
+                        It doensn't look like you've made any <strong>Reviews</strong> yet? <br>
+                        Why not jump over to the <a href="{% url 'create_review' %}">Create Review</a> page and help others to find valauble resources for their health and fitness.</h3>
+                        <hr>
+                    </div>
+                </div>
             {% endfor %}
     </div>
 </div>

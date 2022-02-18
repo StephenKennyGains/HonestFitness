@@ -4,9 +4,10 @@ Below are the views to allow users to enter into a full view
 of listed postsand comment on them and like them if registered
 and logged in"""
 
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.views import generic, View
+from django.contrib import messages
 from .models import Review
 from .forms import ReviewForm
 
@@ -69,26 +70,36 @@ class CreateReview(View):
 
 class UpdateReview(View):
 
-    """ Allows users to edit their reviews by calling the
-    review by its id and actioning the review form to edit"""
+    """ Displays the current post and approved comments.
+    Sets the value for the like button to false and queries
+    if the user has liked the post so that it can then be
+    set to true for display"""
 
-    def edit_review(request, id=None):
+    def edit_review(request, id):
 
-        """ Gets the review by id and calls the form
-        to update and resubmit updating the review by id"""
+        """ Displays the current post and approved comments.
+        Sets the value for the like button to false and queries
+        if the user has liked the post so that it can then be
+        set to true for display"""
 
-        post = Review.objects.get(id=id)
-        if request.method != "POST":
-            form = ReviewForm(instance=post)
-        else:
-            form = ReviewForm(instance=post, data=request.POST)
-            if form.is_valid():
-                post = form.save(commit=False)
-                title = request.POST["title"]
-                location = request.POST["location"]
-                reviewbody = request.POST["reviewbody"]
+        obj = get_object_or_404(Review, id=id)
 
-                form.save()
+        form = ReviewForm(request.POST or None, instance=obj)
+        context = {'form': form}
+
+        if form.is_valid():
+                obj = form.save(commit=False)
+
+                obj.save()
+
+                messages.success(request,
+                                 "You successfully updated the review")
+
                 return HttpResponseRedirect(reverse("review"))
 
-        return render(request, "edit_review.html")
+        else:
+            context = {'form': form,
+                       'error': 'Oops something went wrong. Try again!'}
+            return render(request, 'edit_review.html', context)
+
+        return HttpResponseRedirect(reverse("review"))
