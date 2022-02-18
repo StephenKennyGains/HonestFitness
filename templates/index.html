@@ -31,9 +31,9 @@
                         <div>
                                 <div class="card-body">
                                     {% if "placeholder" in post.featured_image.url %}
-                                    <img class="card-img-top post-image" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A barbell in a gym">
+                                    <img class="card-img-top post-image" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A fitness Image">
                                     {% else %}
-                                    <img class="card-img-top post-image" src=" {{ post.featured_image.url }} ">
+                                    <img class="card-img-top post-image" src=" {{ post.featured_image.url }} " alt="Fitness Image">
                                     {% endif %}
                                     <div>
                                         <p class="post-author">Author: {{ post.author }}</p>
