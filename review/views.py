@@ -65,6 +65,8 @@ class CreateReview(View):
                 post.author = request.user
                 post.user = request.user
                 post.save()
+                messages.success(request,
+                                 "You successfully posted a review")
             return HttpResponseRedirect(reverse("review"))
 
 
@@ -89,12 +91,9 @@ class UpdateReview(View):
 
         if form.is_valid():
                 obj = form.save(commit=False)
-
                 obj.save()
-
                 messages.success(request,
                                  "You successfully updated the review")
-
                 return HttpResponseRedirect(reverse("review"))
 
         else:

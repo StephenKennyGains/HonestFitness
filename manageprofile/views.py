@@ -46,4 +46,6 @@ class DeleteReviewView(DeleteView):
 
         review_delete = Review.objects.get(id=id)
         review_delete.delete()
+        messages.error(request,
+                        "Deletion Completion!")
         return HttpResponseRedirect(reverse("profile"))
