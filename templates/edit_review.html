@@ -27,11 +27,11 @@
         <p class="form-headings-font">Reviewing as: {{ user.username }}</p>
         <form method="POST">
             <label for="title" class="form-headings-font">{{ review.title }}Title:</label><br>
-            <input placeholder="This could be a gym, a trainer or organisation you want to highlight" class="form-boxes mb-2" type="text" id="title" name="title"><br>
+            <input placeholder="This could be a gym, a trainer or organisation you want to highlight" class="form-boxes mb-2" type="text" id="title" name="title" required><br>
             <label for="location" class="form-headings-font">{{ review.location }}Location:</label><br>
-            <input placeholder="Where is the person or facility based?" class="form-boxes mb-2" type="text" id="location" name="location"><br>
+            <input placeholder="Where is the person or facility based?" class="form-boxes mb-2" type="text" id="location" name="location" required><br>
             <label for="review" class="form-headings-font">{{ review.reviewbody }}Your Review:</label><br>
-            <textarea placeholder="Let people know what you think about this person or place..." type="text" name="reviewbody" id="review" cols="80" rows="6"></textarea> <br>
+            <textarea placeholder="Let people know what you think about this person or place..." type="text" name="reviewbody" id="review" cols="80" rows="6" required></textarea> <br>
             <p class="text-center my-3">Please rate this place or person from 1-5 using the options below</p>
             <div class="d-flex justify-content-evenly">
             <div class="d-inline-block">
