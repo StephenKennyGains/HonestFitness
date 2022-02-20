@@ -12,7 +12,7 @@ Users of the site can view all posts, reviews and comments left by the authors a
 
 All reviews and comments left by users can be updated or deleted by the user and admin to avoid any hateful, negative or derogatory content being published to the site.
 
-![Responsive Mock-up](images/Mockup.png)
+![Responsive Mock-up](media/readme_images/hf_multi_mockup.png)
 
 
 
