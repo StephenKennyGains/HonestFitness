@@ -73,8 +73,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="login-prompt">To join the conversation, click <strong><a href="{% url 'account_signup' %}">here</a></strong> to Sign In <br><br>
-                    Don't have an account yet? Create one <strong><a href="{% url 'account_login' %}">here</a></strong> quickly and easily.</p>
+                    <p class="login-prompt">To join the conversation, click <strong><a href="{% url 'account_login' %}">here</a></strong> to Sign In <br><br>
+                    Don't have an account yet? Create one <strong><a href="{% url 'account_signup' %}">here</a></strong> quickly and easily.</p>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
                         {% if user.username == comment.name %}
 
                         <!-- Button to prompt Modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                         <hr>

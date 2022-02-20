@@ -136,6 +136,9 @@ body {
     font-size: 1.25rem;
 }
 
+.fa-trash-can {
+    color: white;
+}
 
 /* ----------------- Review Page Design -------------------- */
 
@@ -187,6 +190,17 @@ textarea {
 .btn-signup {
     background-color: #23BBBB;
     color: #fff;
+    text-decoration: none;
+}
+
+.btn-signup a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-signup a:hover {
+    color: rgb(59, 59, 59);
+    text-decoration: none;
 }
 
 
@@ -213,4 +227,16 @@ textarea {
     .login-prompt {
         font-size: 1rem;
     }
+}
+
+@media only screen and (max-width: 320px) {
+
+    .navbar.pe-5 {
+        padding-right: 0rem!important;
+    }
+
+    .navbar.ps-5 {
+        padding-left: 0rem!important;
+    }
+
 }

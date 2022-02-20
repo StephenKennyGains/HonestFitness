@@ -30,6 +30,7 @@
                     <div class="card home-cards mb-3">
                         <div>
                                 <div class="card-body">
+                                    <a class="post-title-link" href="{% url 'post_full_view' post.slug %}">
                                     {% if "placeholder" in post.featured_image.url %}
                                     <img class="card-img-top post-image" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A fitness Image">
                                     {% else %}
@@ -39,12 +40,11 @@
                                         <p class="post-author">Author: {{ post.author }}</p>
                                     </div>
                                 </div>
-                                <a class="post-title-link" href="{% url 'post_full_view' post.slug %}">
                                     <h2 class="post-title">{{ post.title }}</h2>
-                                </a>
                                 <hr>
                                 <p class="card-text post-meta">{{ post.created_on }}</p>
                             </div>
+                        </a>
                         </div>   
                     </div>
                 {% endfor %}
@@ -73,6 +73,7 @@
                        <div class="card home-cards mb-3">
                            <div>
                                 <div class="card-body">
+                                    <a class="post-title-link" href="{% url 'post_full_view' post.slug %}">
                                     {% if "placeholder" in post.featured_image.url %}
                                     <img class="card-img-top post-image" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A barbell in a gym">
                                     {% else %}
@@ -82,12 +83,11 @@
                                         <p class="post-author">Author: {{ post.author }}</p>
                                     </div>
                                 </div>
-                                <a class="post-title-link" href="{% url 'post_full_view' post.slug %}">
                                     <h2 class="post-title">{{ post.title }}</h2>
-                                </a>
                                 <hr>
                                 <p class="card-text post-meta">{{ post.created_on }}</p>
                             </div>
+                            </a>
                         </div>   
                     </div>
                 {% endfor %}
@@ -117,6 +117,7 @@
                        <div class="card home-cards mb-3">
                            <div>
                                 <div class="card-body">
+                                    <a class="post-title-link" href="{% url 'post_full_view' post.slug %}">
                                     {% if "placeholder" in post.featured_image.url %}
                                     <img class="card-img-top post-image" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="A barbell in a gym">
                                     {% else %}
@@ -126,12 +127,11 @@
                                         <p class="post-author">Author: {{ post.author }}</p>
                                     </div>
                                 </div>
-                                <a class="post-title-link" href="{% url 'post_full_view' post.slug %}">
                                     <h2 class="post-title">{{ post.title }}</h2>
-                                </a>
                                 <hr>
                                 <p class="card-text post-meta">{{ post.created_on }}</p>
                             </div>
+                            </a>
                         </div>   
                     </div>
                 {% endfor %}

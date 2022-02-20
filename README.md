@@ -259,7 +259,11 @@ The application has been kept simple to allow for easy navigation for users thro
 
 ### __User Testing__
 
-- As automated testing ran into issues, manual testing of the site was required. To do this, I tested the site manually, naviagting through each section of the site to find errors in multiples media formats for issues with display, form submission, url redirection and ensuring authentication features were valid and performing as expected. In addition I asked two seperate users to test the site on both mobile and desktop to try and find any issues or design faults. No errors were reported back and manual testing of any additional features will be carried out if automated testing issues persist.
+- As automated testing ran into issues, manual testing of the site was required. To do this, I tested the site manually, naviagting through each section of the site to find errors in multiple media formats for issues with display, form submission, url redirection and ensuring authentication features were valid and performing as expected. In addition I asked three seperate users to test the site on both mobile and desktop to try and find any issues or design faults. The following desing flaws and issues were noted during user testing
+- The card for displaying posts, while highlighting to show it is clickable on a desktop, will not do that on a mobile and so has been changed so that the entire card is now clickable instead of just the posts title.
+- The deletion button colours were easily washed out by their prmary button colour and so that has been updated to be more appealing and user friendly.
+- A 500 error was reported twice when two users attempted to create new accounts. Although the accounts wer created succesffully, the 500 page was still given to the user. To combat this I will include a Try Catch and error log to identify and correct the issues but unfortunately time does not allow it for project submission. The accounts created could be accessed and no other pages had other loading issues. Other user tests showed that the issue was not consistant. 
+- Noted that the Sign out page did not currently have a return button, only a logout button which has been updated to now include a return button.
 
 ### __Lighthouse__
 
@@ -281,7 +285,7 @@ The application has been kept simple to allow for easy navigation for users thro
 
 ## Unfixed Bugs
 
-- There are no unfixed bugs at present.
+- The 500 error listed in the User testing section is still present. Some users when creating a new account are met with a 500 error when they create the account, however the account is still created and the user can use those details to then log in to the site. This has not be a constant for all account creations but has been intermittent. 
 
 ## Deployment 
 
