@@ -1,8 +1,7 @@
 """ Views allow for models to be displayed to the user and
 are displayed by referencing them through the templates.
-Below are the views to allow users to enter into a full view
-of listed postsand comment on them and like them if registered
-and logged in"""
+Below are the views to allow users to see all reviews
+made by users and admin along with CRUD functions"""
 
 from django.shortcuts import render, reverse, get_object_or_404
 from django.http import HttpResponseRedirect
@@ -17,8 +16,8 @@ from .forms import ReviewForm
 
 class UserReview(generic.ListView):
 
-    """ Sets the view for posts to display to the homepage.
-    Pagination comes in at 3 posts to scroll earlier posts"""
+    """ Sets the view for reviews to display to the review page.
+    No Pagination needed"""
 
     model = Review
     queryset = Review.objects.order_by("-created_on")
@@ -27,15 +26,11 @@ class UserReview(generic.ListView):
 
 class CreateReview(View):
 
-    """ Sets the view for posts to display to the homepage.
-    Pagination comes in at 3 posts to scroll earlier posts"""
+    """ Sets the view for review creation"""
 
     def get(self, request):
 
-        """ Displays the current post and approved comments.
-        Sets the value for the like button to false and queries
-        if the user has liked the post so that it can then be
-        set to true for display"""
+        """ Gets the page, review form and user status for posting"""
 
         form = ReviewForm(request.GET or None)
         if request.user.is_authenticated:
@@ -52,10 +47,8 @@ class CreateReview(View):
 
     def post(self, request):
 
-        """ Displays the current post and approved comments.
-        Sets the value for the like button to false and queries
-        if the user has liked the post so that it can then be
-        set to true for display"""
+        """ Uses the review form and required fields to post
+        new reviews to the database."""
 
         form = ReviewForm(request.POST or None)
 
@@ -72,17 +65,12 @@ class CreateReview(View):
 
 class UpdateReview(View):
 
-    """ Displays the current post and approved comments.
-    Sets the value for the like button to false and queries
-    if the user has liked the post so that it can then be
-    set to true for display"""
+    """ Allows users to update reviews they own """
 
     def edit_review(request, id):
 
-        """ Displays the current post and approved comments.
-        Sets the value for the like button to false and queries
-        if the user has liked the post so that it can then be
-        set to true for display"""
+        """ Re calls the create form but seperates the review
+        by ID so it is updating and not creating new reviews """
 
         obj = get_object_or_404(Review, id=id)
 

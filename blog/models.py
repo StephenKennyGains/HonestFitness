@@ -43,10 +43,6 @@ class Post(models.Model):
         """Return post name as string"""
         return self.title
 
-    def number_of_likes(self):
-        """Returns the number of likes to specific posts"""
-        return self.likes.count()
-
 
 class Comment(models.Model):
     """Allows for commenting on blog posts and keeps comments

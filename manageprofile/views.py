@@ -14,7 +14,7 @@ from review.models import Review
 @login_required
 def profile(request, pk=None):
     """
-    Connects posts to user
+    Allows connection of content to user
     """
     if pk:
         review_author_id = get_object_or_404(User, pk=pk)
@@ -37,7 +37,7 @@ def profile(request, pk=None):
 class DeleteReviewView(DeleteView):
 
     """ Finds reviews related to the user for the option
-    to then delete their reviews"""
+    to then delete their reviews """
 
     def delete_review(request, id=None):
 

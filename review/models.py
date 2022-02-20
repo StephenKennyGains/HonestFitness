@@ -18,7 +18,7 @@ RATING = (
 
 
 class Review(models.Model):
-    """Review moodel allows users to post reviews
+    """Review model allows users to post reviews
     of places and people in fitness that they feel
     are worth highlighting"""
 

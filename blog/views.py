@@ -41,10 +41,9 @@ class PostFullView(View):
 
     def get(self, request, slug, *args, **kwargs):
 
-        """ Displays the current post and approved comments.
-        Sets the value for the like button to false and queries
-        if the user has liked the post so that it can then be
-        set to true for display"""
+        """ Displays the current post and comments.
+        Comments are connected to the specific post using
+        id and slug"""
 
         post = get_object_or_404(Post, slug=slug)
         comments = post.comments.order_by('created_on')
@@ -65,7 +64,7 @@ class PostFullView(View):
         """ Sets the display and functionality to a user
         submitted comment calling on the comment form,
         checking its validity and saving to the database
-        for apporval to then be displayed"""
+        to then be displayed"""
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
