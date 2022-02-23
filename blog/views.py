@@ -33,6 +33,40 @@ class PostGeneral(generic.ListView):
         return myset
 
 
+class ViewMoreGeneral(generic.ListView):
+
+    """ Sets the view for posts to display to the homepage.
+    Posts limited to 3 most recent for each category """
+
+    context_object_name = "category"
+    template_name = "general_posts.html"
+    model = Post
+
+    def get_queryset(self):
+        myset = {
+            "General": Post.objects.filter(status=1, category=1).order_by(
+                "-created_on"),
+        }
+        return myset
+
+
+class ViewMoreTraining(generic.ListView):
+
+    """ Sets the view for posts to display to the homepage.
+    Posts limited to 3 most recent for each category """
+
+    context_object_name = "category"
+    template_name = "advice_posts.html"
+    model = Post
+
+    def get_queryset(self):
+        myset = {
+            "Training": Post.objects.filter(status=1, category=2).order_by(
+                "-created_on"),
+        }
+        return myset
+
+
 class PostFullView(View):
 
     """ Sets the view for posts to be entered into in a new
