@@ -67,6 +67,23 @@ class ViewMoreTraining(generic.ListView):
         return myset
 
 
+class ViewMoreExercise(generic.ListView):
+
+    """ Sets the view for posts to display to the homepage.
+    Posts limited to 3 most recent for each category """
+
+    context_object_name = "category"
+    template_name = "exercise_posts.html"
+    model = Post
+
+    def get_queryset(self):
+        myset = {
+            "Exercise": Post.objects.filter(status=1, category=3).order_by(
+                 "-created_on")[:3]
+        }
+        return myset
+
+
 class PostFullView(View):
 
     """ Sets the view for posts to be entered into in a new
