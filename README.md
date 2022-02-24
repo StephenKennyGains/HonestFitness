@@ -244,6 +244,7 @@ The application has been kept simple to allow for easy navigation for users thro
 - I would like to add a feature which uses a ggogle maps API which will display the location of gyms, trainers and organisations left by users reviews so that other users who are keen to avail of the services of those reviews can see if they are readily available to them.
 - A feature for users to be able to like others comments would be a nice additonal feature so that there is a more community feel to the site encouraging conversation between both the users and admin.
 - I would like to add to the profile page to include comments left by users and display the post they are related to for the same reason as the review edit function so that users can easily find the comments they have left and delete them if required.
+- Fortunately and Unfortunately I was offered a new job and interviewing for that postion for the final 7 weeks leading to project submission which left me shorter on time than I would have like and after course completion the above features will be implemented to develop on my portfolio
 
 ## Database
 
